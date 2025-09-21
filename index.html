@@ -3,125 +3,740 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - ResQLink</title>
+    <title>ResQLink - Wildfire Evacuation Preparedness</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.7;
-            color: #374151;
-            background-color: #f8fafc;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #f97316 0%, #4a044e 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M10 10 L90 90 M90 10 L10 90" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></svg>') repeat;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-100px); }
+        }
+
         .container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 20px 40px;
-            background-color: #ffffff;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
         }
-        h1 {
-            color: #1f2937;
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #f97316;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #f97316;
+        }
+
+        .phone-mockup {
+            position: relative;
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        .phone-frame {
+            background: #1f2937;
+            border-radius: 30px;
+            padding: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        .phone-screen {
+            background: #f9fafb;
+            border-radius: 20px;
+            padding: 10px;
+            position: relative;
+            aspect-ratio: 9/19.5;
+        }
+
+        .app-preview {
+            background: linear-gradient(to bottom, #fb923c, #f97316);
+            border-radius: 15px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .app-main-icon {
+            width: 120px;
+            height: 120px;
+            background: #f97316;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border: 4px solid white;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+        }
+
+        .app-features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .mini-feature {
+            background: rgba(255,255,255,0.1);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        .features-section {
+            padding: 100px 0;
+            background: #f8fafc;
+        }
+
+        .section-title {
+            text-align: center;
             font-size: 2.5rem;
-            border-bottom: 2px solid #f97316;
-            padding-bottom: 10px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1f2937;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #6b7280;
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #f97316, #fb923c);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f97316, #fb923c);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
             margin-bottom: 20px;
         }
-        h2 {
-            color: #1f2937;
-            font-size: 1.5rem;
-            margin-top: 30px;
-        }
-        p {
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
             margin-bottom: 15px;
-        }
-        strong {
             color: #1f2937;
         }
-        .highlight {
-            background-color: #fff7ed;
-            padding: 15px;
-            border-left: 4px solid #f97316;
-            border-radius: 8px;
-            margin-top: 20px;
-            font-weight: 500;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #e5e7eb;
-            font-size: 0.9rem;
+
+        .feature-card p {
             color: #6b7280;
+            line-height: 1.7;
         }
-        .footer a {
+
+        .feature-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .feature-list li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #4b5563;
+        }
+
+        .feature-list li::before {
+            content: '✓';
             color: #f97316;
-            text-decoration: none;
-            font-weight: 600;
+            font-weight: bold;
         }
-        .footer a:hover {
-            text-decoration: underline;
+
+        .how-it-works-section {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            color: white;
+            padding: 80px 0;
+        }
+        
+        .step-item {
+            text-align: center;
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            border: 3px solid #f97316;
+            color: #f97316;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .step-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .step-item p {
+            opacity: 0.9;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .testimonials-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid #f97316;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: #374151;
+        }
+
+        .author {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .footer {
+            background: #111827;
+            color: white;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #f97316;
+        }
+
+        .footer-section a {
+            color: #9ca3af;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 30px;
+            color: #9ca3af;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .phone-mockup {
+                order: -1;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+            
+            .footer-content {
+                text-align: center;
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            opacity: 0.7;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Privacy Policy for ResQLink</h1>
-        <p><strong>Effective Date:</strong> September 21, 2025</p>
-
-        <h2>Our Commitment to Your Privacy</h2>
-        <p>
-            ResQLink ("the App") is designed with your privacy and security as the highest priority. We understand that the information you store in the app is sensitive and personal. This policy outlines our firm stance on data privacy: we collect no information from you.
-        </p>
-
-        <div class="highlight">
-            <p><strong>The Core Principle:</strong> All information you add to the ResQLink app is stored exclusively on your local device. Nothing is ever transmitted, saved, or viewed by us or any third party.</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>ResQLink</h1>
+                    <p class="tagline">Your Wildfire Evacuation Lifeline.</p>
+                    <p class="hero-description">
+                        When wildfires threaten, every second counts. ResQLink is the essential app designed to help you and your loved ones prepare for, track, and act on wildfire evacuation orders. Get real-time alerts, manage your go-bags, and execute your family's evacuation plan with confidence.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="#download" class="btn btn-primary">
+                            <i class="fas fa-download"></i>
+                            Download Now
+                        </a>
+                        <a href="#features" class="btn btn-secondary">
+                            <i class="fas fa-arrow-down"></i>
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+                <div class="phone-mockup">
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <div class="app-preview">
+                                <h3 style="margin-bottom: 20px;">Evacuation Plan</h3>
+                                <div class="app-main-icon"><i class="fas fa-map-marked-alt"></i></div>
+                                <div class="app-features-grid">
+                                    <div class="mini-feature">
+                                        <i class="fas fa-exclamation-triangle"></i><br>Alerts
+                                    </div>
+                                    <div class="mini-feature">
+                                        <i class="fas fa-route"></i><br>Plan
+                                    </div>
+                                    <div class="mini-feature">
+                                        <i class="fas fa-tasks"></i><br>Checklist
+                                    </div>
+                                    <div class="mini-feature">
+                                        <i class="fas fa-file-alt"></i><br>Docs
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <h2>Information You Provide</h2>
-        <p>
-            The App allows you to input and store critical information to help you prepare for a wildfire evacuation. This may include, but is not limited to:
-        </p>
-        <ul>
-            <li>Emergency Contacts</li>
-            <li>Evacuation Routes and Meeting Points</li>
-            <li>"Go-Bag" Checklists</li>
-            <li>Medical Information</li>
-            <li>Copies of Personal Documents</li>
-            <li>Home and Property Details</li>
-        </ul>
-        <p>
-            This data resides solely within the secure storage of your phone. Deleting the app will also delete all the data you have entered.
-        </p>
-
-        <h2>Information We Do NOT Collect</h2>
-        <p>
-            To be perfectly clear, ResQLink does <strong>NOT</strong> collect, store, or have access to any of the following:
-        </p>
-        <ul>
-            <li>Your name, email address, or any other personal identifiers.</li>
-            <li>Your location data or GPS coordinates.</li>
-            <li>Usage analytics or crash reports.</li>
-            <li>Any of the personal data you enter into the app.</li>
-        </ul>
-        <p>
-            There are no user accounts to create because we have no user data to store. The app functions entirely offline without needing an internet connection to access your stored plans.
-        </p>
-
-        <h2>Changes to This Privacy Policy</h2>
-        <p>
-            We may update this Privacy Policy in the future. Any changes will be reflected in an updated version of the app and a revised policy. We will never change our core principle of not collecting your personal data.
-        </p>
-
-        <h2>Contact Us</h2>
-        <p>
-            If you have any questions about this Privacy Policy, please feel free to contact us at <a href="mailto:support@resqlink-app.com" style="color: #f97316;">support@resqlink-app.com</a>.
-        </p>
-
-        <div class="footer">
-            <p><a href="resqlink_wildfire_app.html">Return to ResQLink Home</a></p>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down fa-2x"></i>
         </div>
-    </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <h2 class="section-title">Essential Wildfire Preparedness Features</h2>
+            <p class="section-subtitle">
+                Every feature in ResQLink is designed with one goal: keeping your family safe when a wildfire approaches.
+            </p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-broadcast-tower"></i>
+                    </div>
+                    <h3>Real-Time Wildfire Alerts</h3>
+                    <p>Stay ahead of the threat with instant notifications. Our app monitors official sources to alert you to nearby fire activity and evacuation warnings or orders for your designated zones.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3>Custom Evacuation Plans</h3>
+                    <p>Build and share a complete evacuation plan:</p>
+                    <ul class="feature-list">
+                        <li>Map multiple evacuation routes</li>
+                        <li>Set primary and secondary family meeting locations</li>
+                        <li>Find nearby designated public shelters</li>
+                        <li>Integrate with real-time traffic alerts</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>"Go-Bag" Checklists</h3>
+                    <p>Never forget a critical item. Use our pre-loaded or custom checklists for the "Six P's" and other essentials to prepare your emergency kits.</p>
+                    <ul class="feature-list">
+                        <li>Checklists for family, pets, and vehicles</li>
+                        <li>Track expiration dates for supplies</li>
+                        <li>Set reminders to review and update your kits</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure Document & Info Hub</h3>
+                    <p>Access vital information even when you're offline. Securely store digital copies of:</p>
+                     <ul class="feature-list">
+                        <li>Insurance policies and identification</li>
+                        <li>Emergency contacts and medical data</li>
+                        <li>Photos of home and valuables for claims</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Home Hardening Guides</h3>
+                    <p>Prepare your home to better withstand a wildfire. Our guides help you:</p>
+                    <ul class="feature-list">
+                        <li>Follow checklists to create defensible space</li>
+                        <li>Learn about fire-resistant landscaping</li>
+                        <li>Get tips for reducing wildfire risks</li>
+                        <li>Set reminders for seasonal maintenance</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Family Communication Plan</h3>
+                    <p>Ensure everyone is on the same page during a crisis:</p>
+                    <ul class="feature-list">
+                        <li>Designate an out-of-state contact</li>
+                        <li>Share the evacuation plan instantly</li>
+                        <li>Use the "I'm Safe" status check button</li>
+                        <li>Store emergency contacts for one-tap calls</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Get Ready in 3 Simple Steps</h2>
+             <div class="features-grid" style="margin-bottom: 0;">
+                <div class="step-item">
+                    <div class="step-icon">1</div>
+                    <h3>Get Alerts</h3>
+                    <p>Set your location to receive real-time fire and evacuation alerts from official sources.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-icon">2</div>
+                    <h3>Make a Plan</h3>
+                    <p>Use our templates to build your family's evacuation route, communication plan, and meeting points.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-icon">3</div>
+                    <h3>Pack Your Bags</h3>
+                    <p>Follow the interactive checklists to prepare your "Go-Bags" so you're ready to leave at a moment's notice.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Who Needs This Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">Who Needs ResQLink?</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="quote">
+                        "A must-have for anyone living in the Wildland-Urban Interface (WUI). This app turns the overwhelming task of fire prep into manageable steps."
+                    </div>
+                    <div class="author">— Homeowners in High-Risk Areas</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote">
+                        "Gives us peace of mind. The shared family plan and Go-Bag checklists ensure that even our kids know what to do in an emergency."
+                    </div>
+                    <div class="author">— Families & Caregivers</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote">
+                        "As a ranch owner, I have animals and property to think about. ResQLink helps me organize a complex evacuation plan and keeps me informed of fire threats."
+                    </div>
+                    <div class="author">— Rural Property & Livestock Owners</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote">
+                        "Essential for my elderly parents. I can help manage their plan remotely and know they have immediate access to their medical info and evacuation routes."
+                    </div>
+                    <div class="author">— Relatives of Vulnerable Individuals</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="hero" id="download" style="min-height: 60vh;">
+        <div class="container">
+            <div style="text-align: center;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Don't Wait for the Smoke</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9;">
+                    Download ResQLink today. Create your plan, pack your go-bags, and gain the peace of mind that comes from being prepared for a wildfire.
+                </p>
+                <div class="cta-buttons" style="justify-content: center;">
+                    <a href="#" class="btn btn-primary" style="font-size: 1.2rem; padding: 20px 40px;">
+                        <i class="fab fa-apple"></i>
+                        Download for iOS
+                    </a>
+                     <div class="btn" style="font-size: 1.2rem; padding: 20px 40px; background-color: #e5e7eb; color: #6b7280; cursor: not-allowed; border-radius: 50px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 10px;">
+                        <i class="fab fa-google-play"></i>
+                        <span>Android: Coming Soon</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ResQLink</h3>
+                    <p>Your wildfire evacuation lifeline.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#features">Features</a>
+                    <a href="#download">Download</a>
+                    <a href="privacy_policy.html" target="_blank">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <a href="https://www.readyforwildfire.org/" target="_blank">ReadyForWildfire.org</a>
+                    <a href="https://www.redcross.org/get-help/how-to-prepare-for-emergencies/types-of-emergencies/wildfire.html" target="_blank">Red Cross</a>
+                    <a href="https://www.fema.gov/emergency-managers/risk-management/wildfire" target="_blank">FEMA</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <a href="#">Help Center</a>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Feature Requests</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ResQLink Wildfire App. Be prepared. Stay Safe.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all feature cards and other elements
+        document.querySelectorAll('.feature-card, .testimonial-card, .step-item').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = `opacity 0.6s ease ${index * 0.05}s, transform 0.6s ease ${index * 0.05}s`;
+            observer.observe(card);
+        });
+    </script>
 </body>
 </html>
+
+
